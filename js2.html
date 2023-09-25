@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordering_String</title>
+</head>
+<body>
+    <h1>String Sorting</h1>
+
+    <label for="inputString">Enter a String:</label>
+    <input type="text" id="inputString">
+    <button onclick="sortAndDisplay()">Sort</button>
+
+    <p id="originalString"></p>
+    <p id="sortedString"></p>
+
+    <script>
+        function sortStringAlphabetically(inputString) {
+            return inputString.split('').sort().join('');
+        }
+
+        function sortAndDisplay() {
+            let inputElement = document.getElementById("inputString");
+            let originalString = inputElement.value;
+            let sortedString = sortStringAlphabetically(originalString);
+
+            document.getElementById("originalString").innerHTML = "Original string: " + originalString;
+            document.getElementById("sortedString").innerHTML = "Sorted string: " + sortedString;
+        }
+    </script>
+</body>
+</html>

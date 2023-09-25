@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+    <style>
+        .error {
+            color: rgb(255, 12, 12);
+        }
+        .error-border {
+            border: 2.5px solid rgb(251, 15, 15);
+        }
+        label, input, textarea {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .input-container {
+            display: flex;
+        }
+        .input-container label {
+            flex: 1;
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        .input-container .error {
+            flex: 1;
+            text-align: left;
+            padding-left: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <form id="myForm" onsubmit="return validateForm()" style="margin-top: 7%;">
+        <div class="input-container">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <span id="nameError" class="error"></span>
+        </div>
+
+        <div class="input-container">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email">
+            <span id="emailError" class="error"></span>
+        </div>
+
+        <div class="input-container">
+            <label for="website">Website:</label>
+            <input type="text" id="website" name="website">
+            <span id="websiteError" class="error"></span>
+        </div>
+
+        <div class="input-container">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message"></textarea>
+            <span id="messageError" class="error"></span>
+        </div>
+
+        <div class="submit-container">
+            <input type="submit" value="Submit" style="margin-left: 44.5%;">
+        </div>
+    </form>
+
+    <script>
+        function validateForm() {
+            // Reset error messages
+            document.getElementById("nameError").textContent = "";
+            document.getElementById("emailError").textContent = "";
+            document.getElementById("websiteError").textContent = "";
+            document.getElementById("messageError").textContent = "";
+
+            // Remove the error class from all input elements
+            const inputElements = document.querySelectorAll("input, textarea");
+            inputElements.forEach(function(element) {
+                element.classList.remove("error-border");
+            });
+
+            let isValid = true;
+
+            // Validate Name
+            const name = document.getElementById("name").value;
+            if (name.trim() === "") {
+                document.getElementById("nameError").textContent = "This field is required";
+                document.getElementById("name").classList.add("error-border");
+                isValid = false;
+            }
+
+            // Validate Email
+            const email = document.getElementById("email").value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById("emailError").textContent = "A valid email address is required";
+                document.getElementById("email").classList.add("error-border");
+                isValid = false;
+            }
+
+            // Validate Website (URL)
+            const website = document.getElementById("website").value;
+            const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+            if (!urlRegex.test(website)) {
+                document.getElementById("websiteError").textContent = "A valid URL is required";
+                document.getElementById("website").classList.add("error-border");
+                isValid = false;
+            }
+
+            // Validate Message
+            const message = document.getElementById("message").value;
+            if (message.trim() === "") {
+                document.getElementById("messageError").textContent = "This field is required";
+                document.getElementById("message").classList.add("error-border");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>

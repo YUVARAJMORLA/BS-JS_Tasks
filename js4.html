@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .container {
+      margin-left: 5%;
+      margin-top: 7%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button id="showDateButton">Show Date</button>
+    <div id="dateDisplay"></div>
+    <br><br>
+    <button id="showTimeButton">Show Time</button>
+    <div id="timeDisplay"></div>
+  </div>
+  <script>
+    document.getElementById("showDateButton").addEventListener("click", function() {
+      const currentDate = new Date();
+      const day = currentDate.getDate();
+      const month = currentDate.toLocaleString('default', { month: 'long' });
+      const year = currentDate.getFullYear();
+      const formattedDate = day + "/" + month + "/" + year;
+      const dateDisplay = document.getElementById("dateDisplay");
+      dateDisplay.textContent = formattedDate;
+    });
+
+    document.getElementById("showTimeButton").addEventListener("click", function() {
+      const currentTime = new Date();
+      const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+      const formattedTime = currentTime.toLocaleDateString('en-US', options);
+      const timeDisplay = document.getElementById("timeDisplay");
+      timeDisplay.textContent = formattedTime + " (India Standard Time)";
+    });
+  </script>
+</body>
+</html>

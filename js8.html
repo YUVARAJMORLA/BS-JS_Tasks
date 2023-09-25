@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-5</title>
+    <style>
+   
+        form {
+            background: linear-gradient(to bottom,rgb(253, 253, 125), rgb(249, 117, 179));
+            width: 750px;
+            margin: 5px auto;
+            
+            
+        }
+
+        table {
+            width: 600px;
+            margin: 5px auto;
+            padding-right: 14%;
+        }
+        td {
+            padding: 5px;
+            position: relative; 
+        }
+        th {
+            text-align: right;
+            padding-right: 10px;
+        }
+        input.poor {
+        
+            border: none;
+        }
+        input.mismatch {
+            border: 2px solid red;
+        }
+ 
+        .warning {
+            color: red;
+            position: absolute;
+            top: 6px;
+            left: 330px;
+            right: -300px;
+            
+    
+        }
+        #registerButton {
+            background-color: red;
+            color: white;
+            border: 1px solid black;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <table>
+            <caption style="color: blue; margin-left: 90px;"><h1>Registration form</h1></caption>
+            <tr>
+                <th><label for="full-name">Full Name</label></th>
+                <td>
+                    <input style="width: 98%" type="text" id="full-name" name="full-name">
+                    <span id="full-name-warning" class="warning"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <th><label for="last-name">Last Name</label></th>
+                <td>
+                    <input style="width: 98%" type="text" id="last-name" name="last-name">
+                    <span id="last-name-warning" class="warning"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="email">Email</label></th>
+                <td>
+                    <input style="width: 98%" type="email" id="email" name="email">
+                    <span id="email-warning" class="warning"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="password">Password</label></th>
+                <td>
+                    <input style="width: 98%" type="password" id="password" name="password">
+                    <span id="password-warning" class="warning"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="confirm-password">Re-enter Password</label></th>
+                <td>
+                    <input style="width: 98%" type="password" id="confirm-password" name="confirm-password">
+                    <span id="confirm-password-warning" class="warning"></span>
+                </td>
+            </tr>
+            <tr>
+                <th>Gender:</th>
+                <td>
+                    <input type="radio" name="gender" value="male"> Male<br><br>
+                    <input type="radio" name="gender" value="female"> Female
+                </td>
+            </tr>
+            <tr>
+                <th><label for="age">Age:</label></th>
+                <td>
+                    <input style="width: 98%" type="number" id="age" name="age">
+                    <span id="age-warning" class="warning"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="phone-number">Phone Number</label></th>
+                <td>
+                    <input style="width: 98%" type="tel" id="phone-number" name="phone-number">
+                    <span id="phone-number-warning" class="warning"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="address">Address</label></th>
+                <td>
+                    <textarea style="width: 98%" id="address" name="address" rows="4" cols="30"></textarea>
+                    <span id="address-warning" class="warning"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="state">State</label></th>
+                <td>
+                    <input style="width: 98%" type="text" id="state" name="state">
+                    <span id="state-warning" class="warning"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="country">Country</label></th>
+                <td>
+                    <select>
+                        <option>Choose your country</option>
+                        <option>India</option>
+                        <option>United States</option>
+                        <option>United Kingdom</option>
+                        <option>Australia</option>
+                        <option>Germany</option>
+                        <option>France</option>
+                        <option>Japan</option>
+                        <option>China</option>
+                        <option>Brazil</option>
+                    </select>
+                    <span id="country-warning" class="warning"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label>Languages Known</label></th>
+                <td>
+                    <input type="checkbox">English
+                    <input type="checkbox">Kannada
+                    <input type="checkbox">Hindi
+                    <input type="checkbox">Telugu
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="checkbox">Hereby I declare all the given details are true
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: right;">
+                    Log in to <a href="https://ethnus.com/"> Ethnus</a> Website
+                </td>
+            </tr>
+        </table>
+        <br>
+        <center><input type="submit" id="registerButton" value=" Register "/></center>
+        <br><br>
+    </form>
+
+    <script>
+        const registerButton = document.getElementById("registerButton");
+
+        registerButton.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            const requiredFields = [
+                { id: "full-name", label: "Full Name" },
+                { id: "last-name", label: "Last Name" },
+                { id: "email", label: "Email" },
+                { id: "password", label: "Password" },
+                { id: "confirm-password", label: "Re-enter Password" },
+                { id: "age", label: "Age" },
+                { id: "phone-number", label: "Phone Number" },
+                { id: "address", label: "Address" },
+                { id: "state", label: "State" },
+                { id: "country", label: "Country" },
+            ];
+
+            requiredFields.forEach((field) => {
+                const inputElement = document.getElementById(field.id);
+                const warningElement = document.getElementById(`${field.id}-warning`); // Corrected template literal usage
+
+                if (field.id === "confirm-password") {
+                    // Special handling for Re-enter Password field
+                    const passwordElement = document.getElementById("password");
+                    if (inputElement.value.trim() === "") {
+                        warningElement.textContent = "POOR OR MISMATCH";
+                    } else {
+                        warningElement.textContent = "";
+                    }
+                } else if (inputElement.value.trim() === "") {
+                    warningElement.textContent = "POOR";
+                } else {
+                    warningElement.textContent = "";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

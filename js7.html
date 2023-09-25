@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Animation</title>
+    <style>
+        #image-container {
+            position: relative;
+            width: 100%;
+            height: 200px; 
+            overflow: hidden;
+            margin-left: 3%;
+            margin-top: 3%;
+        }
+        #moving-image {
+            position: absolute;
+            top: 0;
+            left: -40px; 
+            transition: left 0.01s linear;
+        }
+    </style>
+</head>
+<body>
+    <div id="image-container">
+      <img id="moving-image" src="train.png">
+    </div>
+    <h2 style="color: rgb(2, 2, 196);margin-left: 4%">Click the following buttons to handle animations</h2>
+    <div style="margin-left: 14%;">
+        <button id="startButton">Start</button>
+        <button id="stopButton">Stop</button>
+    </div>
+
+
+    <script>
+        const startButton = document.getElementById("startButton");
+        const stopButton = document.getElementById("stopButton");
+        const movingImage = document.getElementById("moving-image");
+
+        let animationInterval;
+
+        startButton.addEventListener("click", () => {
+            clearInterval(animationInterval); // Clear any previous animation
+            animationInterval = setInterval(moveImage, 10);
+        });
+
+        stopButton.addEventListener("click", () => {
+            clearInterval(animationInterval);
+        });
+
+        function moveImage() {
+            const currentPosition = parseInt(getComputedStyle(movingImage).left);
+            if (currentPosition < window.innerWidth) {
+                movingImage.style.left = (currentPosition + 2) + "px";
+            } else {
+                movingImage.style.left = "-50px";
+            }
+        }
+    </script>
+</body>
+</html>
